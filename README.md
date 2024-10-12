@@ -4,7 +4,7 @@
 
 #### Team Name: `9ball`  
 
-#### Title: `Cooling Zone Optimizer`
+#### Title: `Cooling Zone Analysis`
   
 #### Your team's hackathon idea in One sentence:
 ##### `Leveraging weather and income datasets to discover the ideal spots to place cooling zones during extreme heat conditions for people without adequate cooling.`
