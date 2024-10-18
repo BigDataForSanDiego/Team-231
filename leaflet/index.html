@@ -668,25 +668,20 @@
     // Call onMapClick when clicking
     map.on('click', onMapClick);
 
-    async function fetchJsonFile(filePath) {
-    try {
-        const response = await fetch(filePath);
-        
+    fetch('http://localhost:8080/city_outputs/Alpine.json')
+    .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
-
-        const data = await response.json();
+        return response.json();
+    })
+    .then(data => {
         console.log(data);
-        
-        return data;  // Return the data if needed elsewhere in your code
-    } catch (error) {
+    })
+    .catch(error => {
         console.error('Error reading the JSON file:', error);
-    }
-}
+    });
 
-// Usage example:
-fetchJsonFile('city_outputs/Alpine.json');
 
 
 
