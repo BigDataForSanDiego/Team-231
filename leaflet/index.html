@@ -12,6 +12,35 @@
     crossorigin=""/>
 
     <style>
+        #map { height: 400px; }
+        #slider {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+            width: 300px;      /* Make the slider wider */
+            height: 25px;      /* Make the slider taller */
+            transform: scale(1.5);  /* Scale the entire slider for a larger appearance */
+            transform-origin: left; /* Ensure the slider scales from the left */
+        }
+
+        #slider-value {
+            position: absolute;
+            bottom: 50px;
+            left: 10px;
+            z-index: 1000;
+            font-size: 18px;
+        }
+
+    </style>
+
+    <input type="range" id="slider" min="2018" max="2024" value="50" />
+
+    <!-- Textbox to display the current value of the slider -->
+    <input type="text" id="slider-value" value="2018" readonly />
+
+
+    <style>
 
         body {
             margin: 0;
@@ -31,6 +60,7 @@
 
 
  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
@@ -81,7 +111,9 @@
     
     
     // Initialize the map
-    var map = L.map('map').setView([32.7157, -117.1611], 10);
+    var map = L.map('map').setView([32.90, -117.1611], 10);
+    
+
 
     // proj4.defs("EPSG:2230", "+proj=utm +zone=11 +datum=NAD83 +units=m +no_defs");
 
@@ -98,6 +130,7 @@
     )
 
     googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+        minZoom: 10,
         maxZoom: 19,
         subdomains:['mt0','mt1','mt2','mt3']
         }
@@ -110,8 +143,17 @@
         "google maps": googleStreets
     }
 
+    var currentLayer = googleStreets;
+
     // Layer control
     L.control.layers(baseMaps).addTo(map);
+
+    //track the slider value
+    document.getElementById('slider').addEventListener('input', function () {
+    const value = this.value;
+    document.getElementById('slider-value').value = value; // Update textbox with the slider value
+    // console.log(value);
+    });
 
     // Highlight Cities
     proj4.defs("EPSG:2230", "+proj=lcc +lat_1=33.88333333333333 +lat_2=32.78333333333333 +lat_0=32.16666666666666 +lon_0=-116.25 +x_0=2000000 +y_0=500000 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs");
@@ -560,7 +602,7 @@
             // Add the GeoJSON layer to the map with click event
             L.geoJSON(data, {
                 style: {
-                    color: 'red',
+                    color: 'purple',
                     fillColor: '#00f',
                     fillOpacity: 0.3
                 },
@@ -643,9 +685,9 @@
 
 
     // Create a popup when left clicking
-    var popup = L.popup();
-    function onMapClick(e) {
-        keys = e.latlng // this is a dictionary
+    // var popup = L.popup();
+    // function onMapClick(e) {
+    //     keys = e.latlng // this is a dictionary
 
         // // General boundaries for Chula Vista
         // if ((keys.lat < 32.6590 && keys.lat > 32.5922) && (keys.lng > -117.1273 && keys.lng < -116.9350)) {
@@ -657,16 +699,16 @@
 
         // Default popup message
         // else {
-            popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
+            // popup
+            // .setLatLng(e.latlng)
+            // .setContent("You clicked the map at " + e.latlng.toString())
+            // .openOn(map);
         // }
         
-    }   
+    // }   
 
     // Call onMapClick when clicking
-    map.on('click', onMapClick);
+    // map.on('click', onMapClick);
 
     fetch('http://localhost:8080/city_outputs/Alpine.json')
     .then(response => {
