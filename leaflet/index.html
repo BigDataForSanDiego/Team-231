@@ -154,8 +154,8 @@
                     layer.on('click', function (e) {
                         // Display the properties of the clicked feature
                         const properties = feature.properties || {};
-                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
-                        layer.bindPopup(popupContent).openPopup();
+                        const popupContent = `<strong>Chula Vista</strong><br>${JSON.stringify(feature.properties, null, 2)}`;
+                    layer.bindPopup(popupContent).openPopup();
                     });
                 }
             }).addTo(map);
@@ -211,5 +211,28 @@
 
     // Call onMapClick when clicking
     map.on('click', onMapClick);
+
+    async function fetchJsonFile(filePath) {
+    try {
+        const response = await fetch(filePath);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        
+        return data;  // Return the data if needed elsewhere in your code
+    } catch (error) {
+        console.error('Error reading the JSON file:', error);
+    }
+}
+
+// Usage example:
+fetchJsonFile('city_outputs/Alpine.json');
+
+
+
 
 </script>
