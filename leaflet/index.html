@@ -123,7 +123,7 @@
      **/
     async function loadGeoJSON_ChulaVista() {
         try {
-            const response = await fetch('Chula_Vista.geojson');
+            const response = await fetch('data/Chula_Vista.geojson');
             const data = await response.json();
             console.log('Original GeoJSON:', data);
 
@@ -182,6 +182,462 @@
 
     // Call the function to load (and mayhaps transform) the GeoJSON
     loadGeoJSON_ChulaVista();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * DEL MAR
+     * 
+     **/
+     async function loadGeoJSON_DelMar() {
+        try {
+            const response = await fetch('data/Del_Mar.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'red',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_DelMar();
+
+
+
+
+
+
+    /**
+     * 
+     * ALPINE
+     * 
+     **/
+     async function loadGeoJSON_Alpine() {
+        try {
+            const response = await fetch('data/Alpine.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'green',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_Alpine();
+
+
+
+    
+    
+
+
+
+
+
+
+
+    /**
+     * 
+     * EL CAJON
+     * 
+     **/
+     async function loadGeoJSON_ElCajon() {
+        try {
+            const response = await fetch('data/El_Cajon.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'green',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_ElCajon();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * Escondido
+     * 
+     **/
+     async function loadGeoJSON_Escondido() {
+        try {
+            const response = await fetch('data/Escondido.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'green',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_Escondido();
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * KEARNY MESA
+     * 
+     **/
+     async function loadGeoJSON_KearnyMesa() {
+        try {
+            const response = await fetch('data/Kearny_Mesa.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'green',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_KearnyMesa();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * DOWNTOWNSD
+     * 
+     **/
+     async function loadGeoJSON_DTSD() {
+        try {
+            const response = await fetch('data/DTSD.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'black',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_DTSD();
+
+
+
+
+
+
+    /**
+     * 
+     * OTAY MESA
+     * 
+     **/
+     async function loadGeoJSON_OtayMesa() {
+        try {
+            const response = await fetch('data/otay_mesa.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'red',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_OtayMesa();
+
+
+
+
+
+
+    
+    /**
+     * 
+     * SAN YSIDRO
+     * 
+     **/
+     async function loadGeoJSON_SanYsidro() {
+        try {
+            const response = await fetch('data/San_Ysidro.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'red',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_SanYsidro();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * Pendleton
+     * 
+     **/
+     async function loadGeoJSON_Pendleton() {
+        try {
+            const response = await fetch('data/Pendleton.geojson');
+            const data = await response.json();
+            console.log('Original GeoJSON:', data);
+
+
+            // Add the GeoJSON layer to the map with click event
+            L.geoJSON(data, {
+                style: {
+                    color: 'red',
+                    fillColor: '#00f',
+                    fillOpacity: 0.3
+                },
+                onEachFeature: function (feature, layer) {
+                    // This function is called for each feature in the GeoJSON
+                    layer.on('click', function (e) {
+                        // Display the properties of the clicked feature
+                        const properties = feature.properties || {};
+                        const popupContent = `<strong>Feature Properties:</strong><br>${JSON.stringify(properties, null, 2)}`;
+                        layer.bindPopup(popupContent).openPopup();
+                    });
+                }
+            }).addTo(map);
+            
+        } catch (error) {
+            console.error('Error loading or transforming GeoJSON:', error);
+        }
+    }
+
+    // Call the function to load (and mayhaps transform) the GeoJSON
+    loadGeoJSON_Pendleton();
+
+
+
+
 
     
 
