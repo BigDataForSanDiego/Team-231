@@ -148,7 +148,7 @@
 
     // main()
 
-    console.log(obj[0]["Site Name"]);
+    // console.log(obj[0]["Site Name"]);
 
     
     
@@ -171,45 +171,71 @@
         }
     )
 
-    googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+    var googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
         minZoom: 10,
         maxZoom: 19,
         subdomains:['mt0','mt1','mt2','mt3']
         }
     );
 
-    googleStreets.addTo(map);
+    var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+        minZoom: 10,
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        ext: 'png'
+        }
+    );
+
+    Stadia_AlidadeSmooth.addTo(map);
 
     var baseMaps = {
-        "default": osm,
-        "google maps": googleStreets
+        "default": Stadia_AlidadeSmooth,
+        "google maps": googleStreets,
+        "osm": osm
     }
 
-    var currentLayer = googleStreets;
-
     // Layer control
+
     L.control.layers(baseMaps).addTo(map);
 
     //track the slider value
+    let slider_value = '';
+    
     document.getElementById('slider').addEventListener('input', function () {
-    const value = this.value;
-    document.getElementById('slider-value').value = value; // Update textbox with the slider value
-    // console.log(value);
+        const slider_value = this.value;
+        document.getElementById('slider-value').value = slider_value; // Update textbox with the slider value
+        console.log("v: " + slider_value);
+        loadGeoJSON_ChulaVista(slider_value);
+        // console.log(value);
     });
+
+
+
 
     // Highlight Cities
     proj4.defs("EPSG:2230", "+proj=lcc +lat_1=33.88333333333333 +lat_2=32.78333333333333 +lat_0=32.16666666666666 +lon_0=-116.25 +x_0=2000000 +y_0=500000 +ellps=GRS80 +datum=NAD83 +units=us-ft +no_defs");
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 
      * CHULA VISTA
      * 
      **/
-    async function loadGeoJSON_ChulaVista() {
+    async function loadGeoJSON_ChulaVista(slider_value) {
         try {
-            const response = await fetch('data/Chula_Vista.geojson');
+            console.log('data/' + slider_value +'/Chula_Vista.geojson');
+            const response = await fetch('data/' + slider_value +'/Chula_Vista.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Transform the coordinates
@@ -265,13 +291,8 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_ChulaVista();
-
-
-
-
-
-
+    loadGeoJSON_ChulaVista(slider_value);
+    
 
 
 
@@ -285,11 +306,11 @@
      * DEL MAR
      * 
      **/
-     async function loadGeoJSON_DelMar() {
+     async function loadGeoJSON_DelMar(slider_value) {
         try {
-            const response = await fetch('data/Del_Mar.geojson');
+            const response = await fetch('data/' + slider_value +'/Del_Mar.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -316,23 +337,26 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_DelMar();
+    loadGeoJSON_DelMar(slider_value);
+    
 
 
 
 
 
 
-    /**
+
+
+     /**
      * 
      * ALPINE
      * 
      **/
-     async function loadGeoJSON_Alpine() {
+     async function loadGeoJSON_Alpine(slider_value) {
         try {
-            const response = await fetch('data/Alpine.geojson');
+            const response = await fetch('data/' + slider_value +'/Alpine.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -359,12 +383,9 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_Alpine();
-
-
-
+    loadGeoJSON_Alpine(slider_value);
     
-    
+
 
 
 
@@ -377,11 +398,11 @@
      * EL CAJON
      * 
      **/
-     async function loadGeoJSON_ElCajon() {
+     async function loadGeoJSON_ElCajon(slider_value) {
         try {
-            const response = await fetch('data/El_Cajon.geojson');
+            const response = await fetch('data/' + slider_value +'/El_Cajon.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -408,14 +429,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_ElCajon();
-
-
-
-
-
-
-
+    loadGeoJSON_ElCajon(slider_value);
 
 
 
@@ -430,11 +444,11 @@
      * Escondido
      * 
      **/
-     async function loadGeoJSON_Escondido() {
+     async function loadGeoJSON_Escondido(slider_value) {
         try {
-            const response = await fetch('data/Escondido.geojson');
+            const response = await fetch('data/' + slider_value +'/Escondido.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -461,27 +475,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_Escondido();
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    loadGeoJSON_Escondido(slider_value);
 
 
 
@@ -496,11 +490,11 @@
      * KEARNY MESA
      * 
      **/
-     async function loadGeoJSON_KearnyMesa() {
+     async function loadGeoJSON_KearnyMesa(slider_value) {
         try {
-            const response = await fetch('data/Kearny_Mesa.geojson');
+            const response = await fetch('data/' + slider_value +'/Kearny_Mesa.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -527,12 +521,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_KearnyMesa();
-
-
-
-
-
+    loadGeoJSON_KearnyMesa(slider_value);
 
 
 
@@ -547,11 +536,11 @@
      * DOWNTOWNSD
      * 
      **/
-     async function loadGeoJSON_DTSD() {
+     async function loadGeoJSON_DTSD(slider_value) {
         try {
-            const response = await fetch('data/DTSD.geojson');
+            const response = await fetch('data/' + slider_value +'/DTSD.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -578,7 +567,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_DTSD();
+    loadGeoJSON_DTSD(slider_value);
 
 
 
@@ -590,11 +579,11 @@
      * OTAY MESA
      * 
      **/
-     async function loadGeoJSON_OtayMesa() {
+     async function loadGeoJSON_OtayMesa(slider_value) {
         try {
-            const response = await fetch('data/otay_mesa.geojson');
+            const response = await fetch('data/' + slider_value +'/otay_mesa.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -621,7 +610,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_OtayMesa();
+    loadGeoJSON_OtayMesa(slider_value);
 
 
 
@@ -634,11 +623,11 @@
      * SAN YSIDRO
      * 
      **/
-     async function loadGeoJSON_SanYsidro() {
+     async function loadGeoJSON_SanYsidro(slider_value) {
         try {
-            const response = await fetch('data/San_Ysidro.geojson');
+            const response = await fetch('data/' + slider_value +'/San_Ysidro.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -665,7 +654,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_SanYsidro();
+    loadGeoJSON_SanYsidro(slider_value);
 
 
 
@@ -686,11 +675,11 @@
      * Pendleton
      * 
      **/
-     async function loadGeoJSON_Pendleton() {
+     async function loadGeoJSON_Pendleton(slider_value) {
         try {
-            const response = await fetch('data/Pendleton.geojson');
+            const response = await fetch('data/' + slider_value +'/Pendleton.geojson');
             const data = await response.json();
-            console.log('Original GeoJSON:', data);
+            // console.log('Original GeoJSON:', data);
 
 
             // Add the GeoJSON layer to the map with click event
@@ -717,7 +706,7 @@
     }
 
     // Call the function to load (and mayhaps transform) the GeoJSON
-    loadGeoJSON_Pendleton();
+    loadGeoJSON_Pendleton(slider_value);
 
 
 
@@ -752,8 +741,30 @@
     // Call onMapClick when clicking
     // map.on('click', onMapClick);
 
+
+    fetch('city_outputs/Alpine.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // console.log(data);
+    })
+    .catch(error => {
+        console.error('Error reading the JSON file:', error);
+    });
+
+
+
+
+
+</script>
+=======
     startLine: 72
     endLine: 516
 </script>
 </body>
 </html>
+
